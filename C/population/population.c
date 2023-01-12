@@ -10,7 +10,7 @@ int main(void)
   int min_pop;
   do
   {
-    min_pop = get_int("Please enter a starting population size: ");
+    min_pop = get_int("Start size: ");
   }
   while (min_pop < 9);
 
@@ -18,7 +18,7 @@ int main(void)
   int max_pop;
   do
   {
-  max_pop = get_int("Please enter a finishing population size: ");
+  max_pop = get_int("End size: ");
   }
   while (max_pop < min_pop);
   int born;
@@ -33,5 +33,5 @@ int main(void)
     years++;
   }
 
-  printf("It will take %i year(s) to reach a llama population of your desired size\n", years);
+  printf("Years: %i\n", years);
 }
