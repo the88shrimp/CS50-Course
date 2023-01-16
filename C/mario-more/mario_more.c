@@ -23,7 +23,7 @@ int main(void)
       printf("#");
     }
 
-    printf(" ");  // printing the gap between the pyramid
+    printf("  ");  // printing the gap between the pyramid
     
     for (int k = size - i; k < size; k++)  // The for loop that prints the second set of hashes
     {
