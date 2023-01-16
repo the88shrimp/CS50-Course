@@ -29,23 +29,23 @@ int main(void)
       }
       else if (digit_one == 5 && digit_two == 1)
       {
-        printf("MasterCard\n");
+        printf("MASTERCARD\n");
       }
       else if (digit_one == 5 && digit_two == 2)
       {
-        printf("MasterCard\n");
+        printf("MASTERCARD\n");
       }
       else if (digit_one == 5 && digit_two == 3)
       {
-        printf("MasterCard\n");
+        printf("MASTERCARD\n");
       }
       else if (digit_one == 5 && digit_two == 4)
       {
-        printf("MasterCard\n");
+        printf("MASTERCARD\n");
       }
       else if (digit_one == 5 && digit_two == 5)
       {
-        printf("MasterCard\n");
+        printf("MASTERCARD\n");
       }
       else
       {
@@ -57,13 +57,17 @@ int main(void)
     {
       long int digit_one = (card_number % 1000000000000000) / 100000000000000;
       long int digit_two = (card_number % 100000000000000) / 10000000000000;
-      if (digit_one == 3 && digit_two == 4)
+      if (digit_one == 4)
       {
-        printf("American Express\n");
+        printf("VISA\n");
+      }
+      else if (digit_one == 3 && digit_two == 4)
+      {
+        printf("AMEX\n");
       }
       else if (digit_one == 3 && digit_two == 7)
       {
-        printf("American Express\n");
+        printf("AMEX\n");
       }
       else
       {
@@ -75,14 +79,29 @@ int main(void)
     {
       long int digit_one = (card_number % 100000000000000) / 10000000000000;
       long int digit_two = (card_number % 10000000000000) / 1000000000000;
+      if (digit_one == 4)
+      {
+        printf("VISA\n");
+      }
+      else
+      {
       printf("INVALID\n");
+      }
     }  
 
     if (length == 13)
     {
       long int digit_one = (card_number % 10000000000000) / 1000000000000;
       long int digit_two = (card_number % 1000000000000) / 100000000000;
+
+      if (digit_one == 4)
+      {
+        printf("VISA\n");
+      }
+      else
+      {
       printf("INVALID\n");
+      }
     }
 
     if (length <= 12)
