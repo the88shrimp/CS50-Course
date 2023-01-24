@@ -91,12 +91,13 @@ printf("%.20f\n",z);  // If you want to display more decimals you can specify af
 // in this case use a double type
 
 // When printing a variable, it has to be represented first by a placeholder that declares the type
-%c  // character - single character, 1 byte of memory, -128 - 127.
-%f  // floating point value - 32bit
-%d  // Double point value - 64bit
-%i  // integer - 32bit signed integer, -2^31-1 - 2^31 (-2,147,483,649 - 2,147,483,648). Unsigned is 4,294,967,296.
-%li  // long integer - 64bit signed integer, -2^63-1 - 2^63 (-9,223,372,036,854,775,809 - 9,223,372,036,854,775,808) unsigned is 18,446,744,073,709,551,616
-%s  // string
+char %c  // character - single character, 1 byte of memory, -128 - 127.
+float %f  // floating point value - 32bit
+double %d  // Double point value - 64bit
+int %i  // integer - 32bit signed integer, -2^31-1 - 2^31 (-2,147,483,649 - 2,147,483,648). Unsigned is 4,294,967,296.
+long %li  // long integer - 64bit signed integer, -2^63-1 - 2^63 (-9,223,372,036,854,775,809 - 9,223,372,036,854,775,808) unsigned is 18,446,744,073,709,551,616
+string %s  // string
+bool // anything other than the value of 0 is considered true. 0 is false
 void  // This is a type that doesn't contain a value and is to represent something with no return value
 
 int x = get_int("x: ");
@@ -170,3 +171,80 @@ void print_grid(int size)  // no return value so start with void, need to declar
 	}
 }
 
+//Arrays
+//arrays are a way to store information back to back in memory for easier access and to allow for certain functionality
+//below is how to create an array with 3 32bit ints
+int scores[3];
+// this will create a 3*4 byte memory allocation for the 3 32 bit ints.
+scores[0] = 72;
+scores[1] = 73;
+scores[2] = 33;
+// this way you don't need to create seperate variables for each score
+printf("Average: %f\n", (scores[0] + scores[1] + scores[2]) / (float) 3); // this will find the average of the scores by adding each indexed position together and dividing by a float value of 3
+for (int i = 0; i < 3; i++)
+{
+	scores[i] = get_int("Score: ") // a better way to prompt for input when storing in scores. (cs50)
+}
+
+float average(int array[]); // creating a function that returns a float and takes an array of ints as an argument
+
+float average(int array[])
+{
+	int sum = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		sum = sum + array[i];
+	}
+	return sum / (float) i;
+}
+
+//making strings without cs50
+//strings are just arrays of characters
+//strings are 1 byte per length + 1 for a \0. the reason for the backslash is to represent absolute 0, not the char representation of 0
+//printf will print every character until it hits a \0 like printing an array in a for loop
+//this \n is also called nul.
+
+string text = "string here"; // initializing a string here is utilizing the cs50 library, you usually can't do this.
+
+//below gives an idea on how things are stored and how strings are really just char arrays
+//this is still a terrible way to print strings
+string words[2];
+words[0] = "HI!";
+words[1] = "BYE!";
+
+printf("%C%C%C\n", words[0][1], words[0][1], words[0][2]);
+printf("%C%C%C%c\n", words[1][1], words[1][1], words[1][2], words[1][3]);
+
+//the below piece of code can be used to get the length of a string
+string name = get_string("What is your name? ");
+
+int n = 0;
+while (name[n] != '\0')
+{
+	n++;
+}
+printf("%i\n", n);
+
+//this is the general library to use for strings, not cs50
+#include <string.h>
+#include <ctype.h> // great library for types
+
+//command line arguments
+//obviously, just like linux programs written in C, you can make command line arguments for your program.
+#include<cs50.h>
+#include<stdio.h>
+
+int main(int argc, string argv[]) //argc is to grab the number of arguments, argv is a string array for prompts
+{
+	printf("Hello, %s\n", argv[1]); //here we're passing in the first argument into a printf function
+}
+//running the program followed by a string will print "Hello, string_here"
+//argv[0] is the program name itself
+//you can use argc for contitionals such as if the user only passed in one argument which means argc == 2. one for the program, one for the first argument
+
+//return status for main
+//becuase main is an int it returns a value
+//if it return's 0, the program will quit
+//others are for returning error codes, you create your own error codes.
+//an example might be if not enough command line arguments are supplied I choose to return 1 and then
+//in some manual I can refer error code 1 to missing command line arguments.
